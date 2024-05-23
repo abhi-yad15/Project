@@ -8,8 +8,7 @@ jobs:
   if_merged:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
+    permissions: write-all
     steps:
       - uses: actions/github-script@v5
         with:
