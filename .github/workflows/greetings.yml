@@ -1,6 +1,9 @@
 name: Greetings
 
-on: [issues]
+on:
+  pull_request:
+    types:
+      - closed
 
 jobs:
   greeting:
