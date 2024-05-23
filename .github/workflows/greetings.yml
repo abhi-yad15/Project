@@ -4,29 +4,12 @@ on:
     types:
       - closed
 jobs:
-  Run-check-references:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
-      contents: write
       pull-requests: write
-      repository-projects: write
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - run: |
-          SCRIPT_OUTPUT=$(cat << EOF
-          first line
-          second line
-          third line
-          EOF
-          )
-          echo "SCRIPT_OUTPUT<<EOF" >> $GITHUB_ENV
-          echo "$SCRIPT_OUTPUT" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-      - run: |
-          echo "${{env.SCRIPT_OUTPUT}}"
-          echo $SCRIPT_OUTPUT
       - uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -35,5 +18,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `${{env.SCRIPT_OUTPUT}}`
+              body: `Your Pr is merged`
             })
