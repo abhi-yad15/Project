@@ -1,8 +1,8 @@
 name: GitHub Actions Test Multi-line
 on:
   pull_request:
-    branches:
-      - Dev
+    types:
+      - closed
 jobs:
   Run-check-references:
     runs-on: ubuntu-latest
