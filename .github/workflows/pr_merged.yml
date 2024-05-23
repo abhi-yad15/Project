@@ -12,7 +12,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - with:
+    - uses: actions/checkout@v1
+      with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: |
             Congratulations, @${{ github.actor }}! 🎉 Thank you for creating your issue. Your contribution is greatly appreciated and we look forward to working with you to resolve the issue. Keep up the great work!
