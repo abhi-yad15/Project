@@ -1,19 +1,35 @@
-name: Greetings
-
+name: GitHub Actions Test Multi-line
 on:
   pull_request:
-    types:
-      - closed
-
+    branches:
+      - Dev
 jobs:
-  greeting:
+  Run-check-references:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Hi there! Thanks for opening this issue. We appreciate your contribution to this open-source project. We aim to respond or assign your issue as soon as possible."
-        pr-message: "Welcome to Our repository.🎊 Thank you so much for taking the time to point this out."
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: |
+          SCRIPT_OUTPUT=$(cat << EOF
+          first line
+          second line
+          third line
+          EOF
+          )
+          echo "SCRIPT_OUTPUT<<EOF" >> $GITHUB_ENV
+          echo "$SCRIPT_OUTPUT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - run: |
+          echo "${{env.SCRIPT_OUTPUT}}"
+          echo $SCRIPT_OUTPUT
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${{env.SCRIPT_OUTPUT}}`
+            })
