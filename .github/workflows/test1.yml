@@ -1,4 +1,4 @@
-name: Auto Comment on PR
+name: Auto Comment on PR Merged
 
 on:
   pull_request_target:
@@ -11,13 +11,13 @@ permissions:
 jobs:
   comment:
     runs-on: ubuntu-latest
-
+    if: github.event.pull_request.merged == true
     steps:
     - name: Add Comment to Pull Request
       run: |
         COMMENT=$(cat <<EOF
         {
-          "body": "Thank you for submitting your pull request! 🙌 We'll review it as soon as possible. In the meantime, please ensure that your changes align with our [CONTRIBUTING.md](https://github.com/Trisha-tech/OnlineBookSales/blob/master/CONTRIBUTING.md). If there are any specific instructions or feedback regarding your PR, we'll provide them here. Thanks again for your contribution! 😊"
+          "body": "Great work @${{ github.event.pull_request.user.login }} !! \nDo not forget to \n+ Share your contribution on socials and tag Clueless 🫂 \n+ Give this repository a star ✨ \n+ Follow Clueless Community on GitHub ✅ test1"
         }
         EOF
         )
