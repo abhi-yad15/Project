@@ -25,7 +25,11 @@ jobs:
       run: |
         COMMENT=$(cat <<EOF
         {
-          "body": "🎉 Your pull request has been successfully merged! 🎉 Thank you for your valuable contribution to our project. Your efforts are greatly appreciated. Feel free to reach out if you have any more contributions or if there's anything else we can assist you with. Keep up the fantastic work! 🚀"
+          "body": `Great work @${{ github.event.pull_request.user.login }} !!
+                     Do not forget to
+                    + Share your contribution on socials and tag Clueless 🫂
+                    + Give this repository a star ✨
+                    + Follow Clueless Community on GitHub ✅`
         }
         EOF
         )
