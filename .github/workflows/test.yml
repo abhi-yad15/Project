@@ -25,11 +25,7 @@ jobs:
       run: |
         COMMENT=$(cat <<EOF
         {
-          "body": "Great work @${{ github.event.pull_request.user.login }} !! \n
-                     Do not forget to \n
-                    + Share your contribution on socials and tag Clueless 🫂 \n
-                    + Give this repository a star ✨ \n
-                    + Follow Clueless Community on GitHub ✅ test"
+          "body": "Great work @${{ github.event.pull_request.user.login }} !! \nDo not forget to \n+ Share your contribution on socials and tag Clueless 🫂 \n+ Give this repository a star ✨ \n+ Follow Clueless Community on GitHub ✅ test"
         }
         EOF
         )
