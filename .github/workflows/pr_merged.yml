@@ -21,7 +21,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Great work @${context.payload.sender.login} !!
+              body: `Great work @${{ github.event.pull_request.user.login }} !!
                      Do not forget to
                     + Share your contribution on socials and tag Clueless 🫂
                     + Give this repository a star ✨
