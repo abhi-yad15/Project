@@ -2,7 +2,7 @@ name: "Greetings"
 
 on:
   pull_request_target:
-    types: [merged]
+    types: [closed]
 
 jobs:
   welcome:
